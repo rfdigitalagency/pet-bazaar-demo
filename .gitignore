@@ -1,0 +1,11 @@
+# Internal only. BRIEF.md contains pitch strategy and notes about the owner
+# that must never appear in a public repo.
+BRIEF.md
+_unused/
+
+# local dev only, contains machine-specific absolute paths
+.claude/
+
+Thumbs.db
+desktop.ini
+.DS_Store
