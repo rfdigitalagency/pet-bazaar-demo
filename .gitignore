@@ -3,9 +3,13 @@
 BRIEF.md
 _unused/
 
+# working backups, never ship
+preform-backup/
+
 # local dev only, contains machine-specific absolute paths
 .claude/
 
 Thumbs.db
 desktop.ini
 .DS_Store
+

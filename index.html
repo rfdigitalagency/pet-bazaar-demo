@@ -174,13 +174,62 @@ p{margin:0}
 }
 .fb-cta .btn{margin-top:18px}
 
-/* ---------- ask ---------- */
+/* ---------- ask + faq ---------- */
 .band{background:var(--moss)}
-.qlist{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:8px}
-.qlist li{
-  background:rgba(11,21,23,.32);border-left:2px solid var(--lamp);
-  padding:12px 16px;border-radius:0 3px 3px 0;font-size:15px
+
+.faq{display:grid;gap:8px;margin:20px 0 0}
+.faq details{
+  position:relative;overflow:hidden;border-radius:0 3px 3px 0;
+  background:rgba(11,21,23,.30);border-left:2px solid rgba(244,164,4,.32);
+  transition:background .26s ease,border-left-color .26s ease,box-shadow .26s ease
 }
+.faq details::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:64px;pointer-events:none;opacity:0;
+  background:linear-gradient(to bottom,rgba(255,183,71,.15),rgba(255,183,71,0));
+  transition:opacity .26s ease
+}
+.faq details[open]{
+  background:rgba(11,21,23,.46);border-left-color:var(--lamp);
+  box-shadow:0 12px 28px -16px rgba(244,164,4,.55)
+}
+.faq details[open]::before{opacity:1}
+.faq summary{
+  position:relative;z-index:1;list-style:none;cursor:pointer;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:18px;min-height:64px;
+  font-size:15px;font-weight:600;line-height:1.45;color:var(--bone);
+  transition:color .26s ease
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq details[open] summary{color:var(--lamp)}
+.faq summary::after{
+  content:"";flex:none;width:10px;height:10px;margin-top:4px;
+  border-right:2px solid var(--lamp);border-bottom:2px solid var(--lamp);
+  transform:rotate(45deg);transition:transform .26s ease
+}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq-a{position:relative;z-index:1;padding:0 18px 20px;font-size:15px;line-height:1.62;max-width:66ch}
+@media (hover:hover) and (pointer:fine){
+  .faq details:not([open]):hover{background:rgba(11,21,23,.42);border-left-color:rgba(244,164,4,.7)}
+  .faq summary:hover{color:var(--lamp)}
+}
+
+/* ---------- action pair, same vocabulary as the fixed contact bar ---------- */
+.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);margin-top:28px;max-width:480px}
+.actions a{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  min-height:var(--bar);padding:14px 10px;text-align:center;
+  background:var(--bin);border-radius:3px;box-shadow:inset 0 0 0 1px rgba(244,164,4,.28);
+  text-decoration:none;color:var(--bone);
+  font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;line-height:1.3;
+  transition:background .22s ease,box-shadow .22s ease,transform .22s ease
+}
+.actions svg{width:20px;height:20px;stroke:var(--lamp);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.actions a:active{background:rgba(244,164,4,.12)}
+@media (hover:hover) and (pointer:fine){
+  .actions a:hover{box-shadow:inset 0 0 0 1px rgba(244,164,4,.6),0 12px 26px -14px rgba(244,164,4,.5);transform:translateY(-2px)}
+}
+.foot .actions{margin:22px 0 6px}
 
 /* ---------- proof ---------- */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
@@ -198,22 +247,6 @@ p{margin:0}
 .facts dd{margin:0;font-size:16px}
 .facts a{color:var(--lamp);text-decoration:none}
 
-/* ---------- form ---------- */
-.form-card{background:var(--bin);border-radius:4px;padding:24px 20px;box-shadow:inset 0 0 0 1px rgba(244,164,4,.14)}
-.field{display:block;margin-bottom:16px}
-.field span{display:block;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--label);margin-bottom:7px}
-.field input,.field textarea{
-  width:100%;background:var(--ground);color:var(--bone);
-  border:1px solid rgba(237,231,218,.18);border-radius:3px;
-  padding:13px 14px;font-family:var(--text);font-size:16px;line-height:1.45
-}
-.field textarea{resize:vertical;min-height:104px}
-.field input:focus,.field textarea:focus{border-color:var(--lamp);outline:none}
-.field [aria-invalid="true"]{border-color:#E2763C}
-.form-note{font-size:13px;color:var(--label);margin-top:14px}
-#askdone p{font-size:17px;line-height:1.55}
-#askdone .btn{margin-top:18px}
-
 /* ---------- footer ---------- */
 .foot{border-top:1px solid rgba(237,231,218,.12);padding:40px 0 30px;font-size:14px;color:var(--label)}
 .foot-mark{font-family:var(--display);font-size:20px;color:var(--lamp);text-transform:uppercase;margin-bottom:14px}
@@ -224,7 +257,7 @@ p{margin:0}
 /* ---------- fixed contact bar ---------- */
 .contactbar{
   position:fixed;left:0;right:0;bottom:0;z-index:60;
-  display:grid;grid-template-columns:repeat(3,1fr);
+  display:grid;grid-template-columns:repeat(2,1fr);
   background:var(--bin);border-top:1px solid rgba(244,164,4,.4);
   padding-bottom:env(safe-area-inset-bottom)
 }
@@ -445,14 +478,57 @@ p{margin:0}
     <p class="eyebrow">Ask us anything</p>
     <h2 style="font-size:clamp(30px,8.5vw,52px);margin-bottom:16px">First one? Ask away.</h2>
     <p class="lead">Nobody takes home their first gecko without a hundred questions, and that's our favorite part of the job. Ask us about heat, humidity, feeding, or just what's easiest to start with. Come on in and we'll walk you through it!</p>
-    <p class="eyebrow" style="margin:26px 0 0">Fair game</p>
-    <ul class="qlist">
-      <li>What's the easiest snake for somebody who has never kept one?</li>
-      <li>How warm does this need to be, and what do I need to get it there?</li>
-      <li>What does it eat, how much, and how often?</li>
-      <li>How big is this going to get?</li>
-    </ul>
-    <a class="btn btn-lamp" href="#ask">Ask us a question</a>
+    <p class="eyebrow" style="margin:30px 0 0">The ones we get asked most</p>
+    <div class="faq">
+      <details>
+        <summary>Do you have a specific animal in stock right now?</summary>
+        <div class="faq-a"><p>Our stock changes constantly, so the honest answer is give us a call at (407) 260-0552 and we will tell you what is on the wall today. What was here last week is probably different from what is here now, and that is half the fun of coming in.</p></div>
+      </details>
+      <details>
+        <summary>Do you ship animals?</summary>
+        <div class="faq-a"><p>No. Everything we sell goes home with somebody who came in and picked it out. We think that is better anyway. You get to see the animal in person, and we get to answer your questions before you commit to anything.</p></div>
+      </details>
+      <details>
+        <summary>I have never kept a reptile. What should I start with?</summary>
+        <div class="faq-a"><p>Come ask us, because the right answer depends on you. How much room you have, how much you want to handle it, how much time you want to put in. There are plenty of good beginner animals and we will point you at the one that fits your life, not the most expensive one on the wall.</p></div>
+      </details>
+      <details>
+        <summary>What is it going to cost to get set up?</summary>
+        <div class="faq-a"><p>Usually more than the animal itself. The enclosure, heat, lighting and substrate are the part people underestimate. Tell us what you are thinking about keeping and we will give you a straight number before you buy anything.</p></div>
+      </details>
+      <details>
+        <summary>How big is this going to get?</summary>
+        <div class="faq-a"><p>Ask us before you buy, not after. It is the question that trips people up most and the easiest one to answer early. Everything on the wall has a grown-up size and we will tell you honestly what you are signing up for.</p></div>
+      </details>
+      <details>
+        <summary>Do you sell feeders?</summary>
+        <div class="faq-a"><p>We do. Feeder fish, feeder mice, grubs, crickets and mealworms. People tell us our feeders are the best value around for the quantity you get, and we would rather keep it that way than nickel and dime you on bugs.</p></div>
+      </details>
+      <details>
+        <summary>Can I buy supplies if I got my animal somewhere else?</summary>
+        <div class="faq-a"><p>Of course. We are happy to help whether it came from us or not. Bring a photo of your setup and we will tell you what is working and what is not.</p></div>
+      </details>
+      <details>
+        <summary>Do you carry anything besides reptiles?</summary>
+        <div class="faq-a"><p>Plenty. Frogs and amphibians, axolotls when we have them, jumping spiders, beetles, tarantulas, turtles and tortoises, and feeder fish. If it is a little unusual, there is a decent chance we have it or have had it.</p></div>
+      </details>
+      <details>
+        <summary>What are your hours and where are you?</summary>
+        <div class="faq-a"><p>Every day, 10 AM to 8 PM, closed major holidays. We are at 490 State Road 436, which people also call Semoran Boulevard, in Casselberry.</p></div>
+      </details>
+      <details>
+        <summary>How long have you been around?</summary>
+        <div class="faq-a"><p>Since 1985. Same store, same corner, a lot of the same customers.</p></div>
+      </details>
+    </div>
+    <div class="actions">
+      <a href="tel:4072600552"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        Give us a call
+      </a>
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Pet%20Bazaar%2C%20490%20FL-436%2C%20Casselberry%2C%20FL%2032707"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Directions to the shop
+      </a>
+    </div>
   </div>
 </section>
 
@@ -477,11 +553,11 @@ p{margin:0}
       <p class="eyebrow">Visit us</p>
       <h2>Look for the turquoise building with the red letters</h2>
     </div>
-    <div class="visit-photo">
-      <img src="images/pet_bazaar_hero_exterior.jpg" alt="The Pet Bazaar storefront on State Road 436, a turquoise building with red PET BAZAAR letters" loading="lazy" decoding="async">
-    </div>
-
     <div class="visit-cols">
+      <div class="visit-photo">
+        <img src="images/pet_bazaar_hero_exterior.jpg" alt="The Pet Bazaar storefront on State Road 436, a turquoise building with red PET BAZAAR letters" loading="lazy" decoding="async">
+      </div>
+
       <div>
         <dl class="facts">
           <div><dt>Address</dt><dd>490 State Road 436 (Semoran Blvd)<br>Casselberry, FL 32707</dd></div>
@@ -489,24 +565,6 @@ p{margin:0}
           <div><dt>Phone</dt><dd><a href="tel:4072600552">(407) 260-0552</a></dd></div>
         </dl>
         <a class="btn btn-lamp" href="https://www.google.com/maps/dir/?api=1&amp;destination=Pet%20Bazaar%2C%20490%20FL-436%2C%20Casselberry%2C%20FL%2032707">Get directions</a>
-      </div>
-
-      <div class="form-card" id="ask">
-        <h3 style="font-size:24px;margin-bottom:14px">Ask us a question</h3>
-        <p class="lead" style="font-size:15px;margin-bottom:22px">Got a question about an animal, or about what it takes to keep one? Ask away. We'd much rather answer it than have you guessing! And if you're close by, come ask us in person, that's always the best way.</p>
-
-        <form id="askform" onsubmit="return false;" novalidate>
-          <label class="field"><span>Your name</span><input type="text" name="name" autocomplete="name" required></label>
-          <label class="field"><span>Phone or email</span><input type="text" name="contact" autocomplete="tel" required></label>
-          <label class="field"><span>Your question</span><textarea name="question" required></textarea></label>
-          <button class="btn btn-lamp" type="submit" style="width:100%">Send it over</button>
-          <p class="form-note">Or just call the store. Somebody is usually right by the phone.</p>
-        </form>
-
-        <div id="askdone" role="status" hidden>
-          <p>That's exactly the kind of question we like! The best answer is always in person though, so come see us on 436 and we'll show you. &#128522;</p>
-          <a class="btn btn-ghost" href="tel:4072600552">Call (407) 260-0552</a>
-        </div>
       </div>
     </div>
   </div>
@@ -519,6 +577,14 @@ p{margin:0}
     <p>490 State Road 436 (Semoran Blvd), Casselberry, FL 32707<br>
        Every day, 10 AM to 8 PM. Closed major holidays.<br>
        <a href="tel:4072600552">(407) 260-0552</a></p>
+    <div class="actions">
+      <a href="tel:4072600552"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        Give us a call
+      </a>
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Pet%20Bazaar%2C%20490%20FL-436%2C%20Casselberry%2C%20FL%2032707"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Directions to the shop
+      </a>
+    </div>
     <div class="foot-links">
       <a href="what-we-carry.html">What we carry</a>
       <a href="visit-us.html">Visit us</a>
@@ -538,10 +604,6 @@ p{margin:0}
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Pet%20Bazaar%2C%20490%20FL-436%2C%20Casselberry%2C%20FL%2032707">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
     Directions
-  </a>
-  <a href="#ask">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20.5l1.6-4.8A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
-    Ask
   </a>
 </nav>
 
@@ -567,25 +629,6 @@ p{margin:0}
   }],
   "sameAs":["https://www.facebook.com/PetBazaarFlorida","https://www.instagram.com/petbazaarflorida/"]
 }
-</script>
-
-<script>
-(function(){
-  var f=document.getElementById('askform');
-  var done=document.getElementById('askdone');
-  if(!f||!done)return;
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var ok=true,fields=f.querySelectorAll('[required]');
-    for(var i=0;i<fields.length;i++){
-      if(!fields[i].value.trim()){fields[i].setAttribute('aria-invalid','true');ok=false;}
-      else{fields[i].removeAttribute('aria-invalid');}
-    }
-    if(!ok){return;}
-    f.hidden=true;
-    done.hidden=false;
-  });
-})();
 </script>
 
 </body>

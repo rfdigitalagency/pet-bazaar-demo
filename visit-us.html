@@ -61,18 +61,7 @@ p{margin:0}
 .facts dd{margin:0;font-size:16px}
 .facts a{color:var(--lamp);text-decoration:none}
 
-.form-card{background:var(--bin);border-radius:4px;padding:24px 20px;margin-top:34px;box-shadow:inset 0 0 0 1px rgba(244,164,4,.14)}
-.form-card h2{font-size:24px;margin-bottom:14px}
-.field{display:block;margin-bottom:16px}
-.field span{display:block;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--label);margin-bottom:7px}
-.field input,.field textarea{width:100%;background:var(--ground);color:var(--bone);border:1px solid rgba(237,231,218,.18);
-  border-radius:3px;padding:13px 14px;font-family:var(--text);font-size:16px;line-height:1.45}
-.field textarea{resize:vertical;min-height:104px}
-.field input:focus,.field textarea:focus{border-color:var(--lamp);outline:none}
-.field [aria-invalid="true"]{border-color:#E2763C}
-.form-note{font-size:13px;color:var(--label);margin-top:14px}
-#askdone p{font-size:17px;line-height:1.55}
-#askdone .btn{margin-top:18px}
+.note{font-size:13px;color:var(--label);margin-top:14px}
 
 .foot{border-top:1px solid rgba(237,231,218,.12);padding:40px 0 30px;font-size:14px;color:var(--label);margin-top:44px}
 .foot-mark{font-family:var(--display);font-size:20px;color:var(--lamp);text-transform:uppercase;margin-bottom:14px}
@@ -80,7 +69,7 @@ p{margin:0}
 .foot a:hover{color:var(--lamp)}
 .foot-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin:18px 0}
 
-.contactbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);
+.contactbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:repeat(2,1fr);
   background:var(--bin);border-top:1px solid rgba(244,164,4,.4);padding-bottom:env(safe-area-inset-bottom)}
 .contactbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:var(--bar);
   text-decoration:none;color:var(--bone);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
@@ -97,7 +86,6 @@ p{margin:0}
   .contactbar{display:none}
   .visit-photo img{height:400px}
   .visit-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
-  .form-card{margin-top:0}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
@@ -124,11 +112,11 @@ p{margin:0}
   </div>
 
   <div class="wrap">
-    <div class="visit-photo">
-      <img src="images/pet_bazaar_hero_exterior.jpg" alt="The Pet Bazaar storefront on State Road 436, a turquoise building with red PET BAZAAR letters" decoding="async">
-    </div>
-
     <div class="visit-cols">
+      <div class="visit-photo">
+        <img src="images/pet_bazaar_hero_exterior.jpg" alt="The Pet Bazaar storefront on State Road 436, a turquoise building with red PET BAZAAR letters" decoding="async">
+      </div>
+
       <div>
         <dl class="facts">
           <div><dt>Address</dt><dd>490 State Road 436 (Semoran Blvd)<br>Casselberry, FL 32707</dd></div>
@@ -137,25 +125,7 @@ p{margin:0}
           <div><dt>Find us online</dt><dd><a href="https://www.facebook.com/PetBazaarFlorida" rel="noopener">Facebook</a> &nbsp;&middot;&nbsp; <a href="https://www.instagram.com/petbazaarflorida/" rel="noopener">Instagram</a></dd></div>
         </dl>
         <a class="btn btn-lamp" href="https://www.google.com/maps/dir/?api=1&amp;destination=Pet%20Bazaar%2C%20490%20FL-436%2C%20Casselberry%2C%20FL%2032707">Get directions</a>
-        <p class="form-note">State Road 436 and Semoran Blvd are the same road, so either one will get you here.</p>
-      </div>
-
-      <div class="form-card" id="ask">
-        <h2>Ask us a question</h2>
-        <p class="lead" style="font-size:15px;margin-bottom:22px">Got a question about an animal, or about what it takes to keep one? Ask away. We'd much rather answer it than have you guessing! And if you're close by, come ask us in person, that's always the best way.</p>
-
-        <form id="askform" onsubmit="return false;" novalidate>
-          <label class="field"><span>Your name</span><input type="text" name="name" autocomplete="name" required></label>
-          <label class="field"><span>Phone or email</span><input type="text" name="contact" autocomplete="tel" required></label>
-          <label class="field"><span>Your question</span><textarea name="question" required></textarea></label>
-          <button class="btn btn-lamp" type="submit" style="width:100%">Send it over</button>
-          <p class="form-note">Or just call the store. Somebody is usually right by the phone.</p>
-        </form>
-
-        <div id="askdone" role="status" hidden>
-          <p>That's exactly the kind of question we like! The best answer is always in person though, so come see us on 436 and we'll show you. &#128522;</p>
-          <a class="btn btn-ghost" href="tel:4072600552">Call (407) 260-0552</a>
-        </div>
+        <p class="note">State Road 436 and Semoran Blvd are the same road, so either one will get you here.</p>
       </div>
     </div>
   </div>
@@ -186,30 +156,7 @@ p{margin:0}
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
     Directions
   </a>
-  <a href="#ask">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20.5l1.6-4.8A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
-    Ask
-  </a>
 </nav>
-
-<script>
-(function(){
-  var f=document.getElementById('askform');
-  var done=document.getElementById('askdone');
-  if(!f||!done)return;
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var ok=true,fields=f.querySelectorAll('[required]');
-    for(var i=0;i<fields.length;i++){
-      if(!fields[i].value.trim()){fields[i].setAttribute('aria-invalid','true');ok=false;}
-      else{fields[i].removeAttribute('aria-invalid');}
-    }
-    if(!ok){return;}
-    f.hidden=true;
-    done.hidden=false;
-  });
-})();
-</script>
 
 </body>
 </html>
