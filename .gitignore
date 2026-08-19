@@ -6,6 +6,9 @@ _unused/
 # working backups, never ship
 preform-backup/
 
+# source photos stay local. only the WebP versions are served.
+images/*.jpg
+
 # local dev only, contains machine-specific absolute paths
 .claude/
 
